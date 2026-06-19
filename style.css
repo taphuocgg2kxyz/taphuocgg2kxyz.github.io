@@ -1,0 +1,60 @@
+@charset "utf-8";
+.content { display: flex; align-items: center; justify-content: center; height: 100vh; background: #ffe3e8; overflow: hidden;}
+.card-wrapper { width: 560px; }
+.card-wrapper .card { position: relative; width: 280px; height: 497.778px; transform: perspective(1000px) translate(50%) scale(0.5) rotateY(0deg); transform-origin: 50px center; transition: all 1s cubic-bezier(0, 0, 0, 0.94) 0s; }
+.card-wrapper .card .side { background: transparent; position: absolute; inset: 0px; transform: perspective(1000px) rotateY(0deg); transform-origin: right center; transform-style: preserve-3d; transition: all 1s cubic-bezier(0, 0, 0, 0.94) 0s; }
+.card-wrapper .card .side.side-a { border-radius: 10px 0px 0px 10px; }
+.card-wrapper .card .side.side-b { border-radius: 10px 0px 0px 10px; }
+.card-wrapper .card .side .back, .card-wrapper .card .side .front { position: absolute; inset: 0px; backface-visibility: hidden; overflow: hidden; }
+.card-wrapper .card .side .front { z-index: 2; transform-origin: center center; }
+.card-wrapper .card .side .back { transform: rotateY(180deg); }
+.card-wrapper .card .side .back .heart { transform: rotateY(180deg); max-height: 100%; }
+.card-wrapper .card .side.side-b .front .heart .circle, .card-wrapper .card .side.side-b .front .heart .rect { background: rgb(249, 190, 199); }
+.card-wrapper .card .side.side-b .back .heart .title { display: none; }
+.card-wrapper.active .card { transform: perspective(1000px) translate(0%) scale(1) rotateY(0deg); }
+.card-wrapper.active .card .side.side-b { transform: perspective(1000px) rotateY(180deg); }
+.card-wrapper.active .card .side-a .front .heart .circle, .card-wrapper.active .card .side-a .front .heart .rect { background: rgb(255, 92, 138) !important; }
+.card-wrapper.active .card .side-b .back .heart .circle, .card-wrapper.active .card .side-b .back .heart .rect { background: rgb(255, 92, 138) !important; }
+.card-wrapper:not(.active) .heart { cursor: pointer; }
+.heart { font-family: Satisfy, cursive; }
+.heart .heart-half { transform: rotate(-45deg) scale(0.8) translateX(23%) translateY(10%); transform-origin: 140px 140px; }
+.heart .heart-half .circle { width: 280px; height: 280px; background: red; border-radius: 50%; transition: background 1s cubic-bezier(0, 0, 0, 0.94) 0s; }
+.heart .heart-half .rect { width: 280px; height: 280px; background: red; margin-top: -140px; transition: background 1s cubic-bezier(0, 0, 0, 0.94) 0s; }
+.heart .title { position: absolute; top: 30%; font-family: Quicksand, sans-serif; right: 10%; font-size: 38px; transform: rotate(45deg); color: rgb(255, 10, 84); }
+.ijustcode { position: absolute; top: 124.444px; right: 0px; height: 100px; margin: auto; backface-visibility: hidden; transform: translateX(50%); }
+.side-b .ijustcode code { transform: rotateY(-180deg); }
+.side-b .front .ijustcode { display: none; }
+.hljs-addition, .hljs-attribute, .hljs-meta .hljs-string, .hljs-regexp, .hljs-string { color: rgb(195, 121, 186); font-weight: 600; }
+pre code.hljs { border-radius: 10px; }
+audio { display: none; }
+
+/* Thêm thuộc tính CSS cho ảnh troll face */
+.troll-face {
+  position: absolute;
+  top: 45%;
+  left: 20%;
+  width: 150px;
+  height: auto;
+  transform: rotate(45deg); /* Xoay nghiêng theo hướng lật mặt sau của tim */
+  z-index: 10;
+  pointer-events: none;
+}
+
+@keyframes confetti-slow { 
+  0% { transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg); }
+  100% { transform: translate3d(25px, 105vh, 0px) rotateX(360deg) rotateY(180deg); }
+}
+@keyframes confetti-medium { 
+  0% { transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg); }
+  100% { transform: translate3d(100px, 105vh, 0px) rotateX(100deg) rotateY(360deg); }
+}
+@keyframes confetti-fast { 
+  0% { transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg); }
+  100% { transform: translate3d(-50px, 105vh, 0px) rotateX(10deg) rotateY(250deg); }
+}
+.confetti-container { perspective: 700px; position: absolute; overflow: hidden; inset: 0px; z-index: -1; }
+.confetti { position: absolute; z-index: 1; top: -10px; border-radius: 0%; }
+.confetti-animation-slow { animation: 2.5s linear 0s 1 normal forwards running confetti-slow; }
+.confetti-animation-medium { animation: 2s linear 0s 1 normal forwards running confetti-medium; }
+.confetti-animation-fast { animation: 1.5s linear 0s 1 normal forwards running confetti-fast; }
+#gradient { position: absolute; inset: 0px; width: 100vw; height: 100vh; z-index: -2; opacity: 0; transition: opacity 1s cubic-bezier(0, 0, 0, 0.94) 0s; }
